@@ -12,4 +12,4 @@ function removeClass(e) {
 }
 const keys = document.querySelectorAll('.key');
 keys.forEach(key => key.addEventListener('transitionend', removeClass));
-window.addEventListener('keydown', play());
+window.addEventListener('keydown', play);
