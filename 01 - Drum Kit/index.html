@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Arush Gupta">
     <title>JS Drum Kit</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -59,25 +60,6 @@
     <audio data-key="75" src="sounds/tom.wav"></audio>
     <audio data-key="76" src="sounds/tink.wav"></audio>
 
-    <script>
-        function play(e) {
-            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-            const playedKey = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-            if(!audio) return;
-            audio.currentTime = 0;
-            audio.play();
-            playedKey.classList.add('playing');
-        }
-        function removeClass(e) {
-            if (e.propertyName !== 'transform') return;
-            this.classList.remove('playing');
-        }
-        const keys = document.querySelectorAll('.key');
-        keys.forEach(key => key.addEventListener('transitionend', removeClass));
-        window.addEventListener('keydown', play());
-    </script>
-
-
+    <script src="drumkit.js"></script>
 </body>
-
 </html>
