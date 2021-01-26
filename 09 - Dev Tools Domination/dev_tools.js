@@ -20,7 +20,7 @@ console.log('Hello, I am a %s string', '💩');
 //console.log(`Hello, I am a ${var}`)
 
 // Styled
-//console.log('%c I am some great text', 'font-size: 50px; background: red; text-shadow: 10px 10px 0 blue;')
+console.log('%c I am some great text', 'font-size: 50px; background: red; text-shadow: 10px 10px 0 blue;')
 
 // warning!
 console.warn('OH NOOOO');
