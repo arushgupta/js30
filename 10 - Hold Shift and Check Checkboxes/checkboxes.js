@@ -9,7 +9,13 @@ function handleCheck(e) {
             if (inBetween) checkbox.checked = true;
         });
     }
-    lastChecked = this;
+    if(!this.checked) {
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) lastChecked = checkbox;
+        });
+    } else {
+        lastChecked = this;
+    }
 }
 
 checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
