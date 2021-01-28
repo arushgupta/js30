@@ -10,6 +10,10 @@ const ranges = player.querySelectorAll('.player__slider');
 /* Build functions */
 function togglePlay() {
     const method = video.paused ? 'play' : 'pause';
+    if(firstPlay && method === 'play') {
+        firstPlay = false;
+        console.log('Get Ricked M8 😛');
+    }
     video[method]();
 }
 
@@ -40,6 +44,7 @@ function scrub(e) {
 /* Event Listeners */
 // Can also use:
 // video.addEventListener('update', handleProgress);
+let firstPlay = true;
 video.addEventListener('timeupdate', handleProgress);
 video.addEventListener('click', togglePlay);
 video.addEventListener('play', updateButton);
@@ -55,3 +60,9 @@ progress.addEventListener('click', scrub);
 progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
 progress.addEventListener('mousedown', () => mousedown = true);
 progress.addEventListener('mouseup', () => mousedown = false);
+window.addEventListener('keyup', (e) => {
+    if(!video.paused) {
+        if(e.key === 'ArrowLeft') video.currentTime += parseFloat(-5);
+        if(e.key === 'ArrowRight') video.currentTime += parseFloat(5);
+    }
+});
