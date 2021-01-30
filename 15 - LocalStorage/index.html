@@ -30,9 +30,34 @@
   const itemsList = document.querySelector('.plates');
   const items = [];
 
+  function addItem(e) {
+      // prevents the submission of the form from refreshing the page
+      e.preventDefault();
+      // we can use 'this' because it is going to be the form that returns on submit
+      const text = (this.querySelector('[name=item]')).value;
+      const item = {
+          text, // shorthand for text: text,
+          done: false
+      };
+      items.push(item);
+      populateList(items, itemsList);
+      this.reset();
+  }
+
+  function populateList(plates = [], platesList) {
+      platesList.innerHTML = plates.map((plate, i) => {
+          return `
+            <li>
+                <label for="">${plate.text}</label>
+            </li>
+          `;
+      }).join('');
+  }
+
+  addItems.addEventListener('submit', addItem);
+
 </script>
 
 
 </body>
 </html>
-
