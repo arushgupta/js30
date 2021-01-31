@@ -8,7 +8,7 @@
 
   <style>
     body {
-      margin: 0;
+      margin: 60px auto;
       font-family: sans-serif;
       background: url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000");
       background-size: cover;
@@ -20,20 +20,20 @@
     #bands {
       list-style: inside square;
       font-size: 20px;
-      background: white;
       width: 500px;
       margin: auto;
       padding: 0;
-      box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+      position: relative;
+      box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.2);
     }
-    
+
     #bands li {
-      border-bottom: 1px solid #efefef;
+      background-color: rgba(255, 255, 255, 0.6);
       padding: 20px;
     }
-    
-    #bands li:last-child {
-      border-bottom: 0;
+
+    #bands li + li {
+        margin-top: 2px;
     }
 
     a {
@@ -46,8 +46,22 @@
   <ul id="bands"></ul>
 
 <script>
-const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+    const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+    console.log("Sorted the following list without articles: ", bands);
 
+    function strip(bandName) {
+        return bandName.replace(/^(a |the |an )/i, '').trim();
+    }
+
+    // the strip() allows us to remove all of the the articles in the beginning
+    // and using it in the if statement allows us to compare stripped values without
+    // making changes to the actual data
+    const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1: -1);
+
+    //.join('') is needed because otherwise the list of strings returned by
+    // map will get converted into a string with commas in it
+    document.querySelector('#bands').innerHTML =
+        sortedBands.map(band => `<li>${band}</li>`).join('');
 
 </script>
 
