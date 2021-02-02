@@ -20,14 +20,15 @@ function getVideo() {
 function paintToCanvas() {
     const width = video.videoWidth;
     const height = video.videoHeight;
+    canvas.width = width;
+    canvas.height = height;
+    // The following two lines of code will mirror the video and canvas
     video.style.cssText =
         '-moz-transform: scale(-1, 1); \
          -webkit-transform: scale(-1, 1); \
          -o-transform: scale(-1, 1); \
          transform: scale(-1, 1); \
          filter: FlipH;';
-    canvas.width = width;
-    canvas.height = height;
     canvas.style.cssText =
         '-moz-transform: scale(-1, 1); \
          -webkit-transform: scale(-1, 1); \
