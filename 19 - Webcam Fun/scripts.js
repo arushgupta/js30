@@ -17,4 +17,18 @@ function getVideo() {
         });
 }
 
+function paintToCanvas() {
+    const width = video.videoWidth;
+    const height = video.videoHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    // Take an image from webcam and paint on the canvas
+    setInterval(() => {
+        ctx.drawImage(video, 0, 0, width, height);
+    }, 16);
+}
+
 getVideo();
+
+video.addEventListener('canplay', paintToCanvas);
