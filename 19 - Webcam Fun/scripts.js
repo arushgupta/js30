@@ -20,9 +20,20 @@ function getVideo() {
 function paintToCanvas() {
     const width = video.videoWidth;
     const height = video.videoHeight;
+    video.style.cssText =
+        '-moz-transform: scale(-1, 1); \
+         -webkit-transform: scale(-1, 1); \
+         -o-transform: scale(-1, 1); \
+         transform: scale(-1, 1); \
+         filter: FlipH;';
     canvas.width = width;
     canvas.height = height;
-
+    canvas.style.cssText =
+        '-moz-transform: scale(-1, 1); \
+         -webkit-transform: scale(-1, 1); \
+         -o-transform: scale(-1, 1); \
+         transform: scale(-1, 1); \
+         filter: FlipH;';
     // Take an image from webcam and paint on the canvas
     setInterval(() => {
         ctx.drawImage(video, 0, 0, width, height);
