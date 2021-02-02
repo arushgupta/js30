@@ -12,13 +12,14 @@ recognition.addEventListener('result', e => {
         .map(result => result[0])
         .map(result => result.transcript)
         .join('');
-    p.textContent = transcript;
+
+    const betterTranscript = transcript.replace(/dog|canine|K9|doggo|floof/gi, "🐶");
+
+    p.textContent = betterTranscript;
     if (e.results[0].isFinal) {
         p = document.createElement('p');
         words.appendChild(p);
     }
-    // can be used to run seperate functions
-    //if(transcript.includes('dog')) {}
 });
 
 recognition.addEventListener('end', recognition.start);
