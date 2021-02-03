@@ -73,6 +73,9 @@
             speed.textContent = (data.coords.speed).toFixed(2);
             units.textContent = 'KM/H';
         }
+        arrow.style.transform = `rotate(${data.coords.heading}deg)`;
+    }, (err) => {
+        alert('Please provide location permission to view speed and direction');
     });
     speed.addEventListener('click', () => isMiles = !isMiles);
   </script>
