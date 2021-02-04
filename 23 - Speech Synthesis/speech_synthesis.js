@@ -31,9 +31,8 @@ function toggle(startOver = true) {
         messages.forEach((message, index) => {
             setTimeout(() => {
                 msg.text = message;
-                console.log(msg.text);
                 speechSynthesis.speak(msg);
-            }, 1000 * index);
+            }, 2000 * index);
         });
 
     }
