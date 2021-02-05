@@ -17,9 +17,9 @@
   html {
     box-sizing: border-box;
   }
-  
-  *, *:before, *:after { 
-    box-sizing: inherit; 
+
+  *, *:before, *:after {
+    box-sizing: inherit;
   }
 
   div {
@@ -40,8 +40,28 @@
   }
 </style>
 
-<button></button>
+<button>💩</button>
 <script>
+    const divs = document.querySelectorAll('div');
+    const button = document.querySelector('button');
+
+    function logText(e) {
+        console.log(this.classList.value);
+        //e.stopPropagation(); // stops bubbling up
+    }
+    // shows bubbling, clicking the inner most div will also capture events for the divs wrapping it
+    // adding optional capture as true, the function will run on capture down
+    // default value of capture is false
+    divs.forEach(div => div.addEventListener('click', logText, {
+        capture: false
+    }));
+
+    // once unbinds the event listener to prevent future clicks on it
+    button.addEventListener('click', () => {
+        console.log('Click!');
+    }, {
+        once: true
+    });
 
 </script>
 </body>
