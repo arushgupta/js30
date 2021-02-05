@@ -1,0 +1,74 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.inner {
+    text-align: center;
+}
+
+.one {
+  background: thistle;
+  width: 100%;
+  padding: 100px;
+}
+
+.one::before {
+    color: #9A6F92;
+    content: "one";
+    font-size: 48px;
+    right: 25px;
+    position: absolute;
+    top: 5px;
+}
+
+.two {
+  background: mistyrose;
+  position: relative;
+  width: 100%;
+  padding: 100px;
+}
+
+.two::before {
+    color: #D2BCBA;
+    content: "two";
+    font-size: 48px;
+    right: 25px;
+    position: absolute;
+    top: 5px;
+}
+
+.three {
+  background: coral;
+  position: relative;
+  width: 100%;
+  padding: 100px;
+}
+
+.three::before {
+    color: #B15934;
+    content: "three";
+    font-size: 48px;
+    right: 25px;
+    position: absolute;
+    top: 5px;
+}
+
+button {
+    color: #323232;
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 15px auto;
+    font-size: 16px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    border-radius: 5px;
+}

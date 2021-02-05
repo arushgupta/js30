@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="author" content="Arush Gupta">
   <title>Understanding JavaScript's Capture</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="bod">
 
@@ -12,57 +14,10 @@
       </div>
     </div>
   </div>
-
-<style>
-  html {
-    box-sizing: border-box;
-  }
-
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-
-  div {
-    width: 100%;
-    padding: 100px;
-  }
-
-  .one {
-    background: thistle;
-  }
-
-  .two {
-    background: mistyrose;
-  }
-
-  .three {
-    background: coral;
-  }
-</style>
-
-<button>💩</button>
-<script>
-    const divs = document.querySelectorAll('div');
-    const button = document.querySelector('button');
-
-    function logText(e) {
-        console.log(this.classList.value);
-        //e.stopPropagation(); // stops bubbling up
-    }
-    // shows bubbling, clicking the inner most div will also capture events for the divs wrapping it
-    // adding optional capture as true, the function will run on capture down
-    // default value of capture is false
-    divs.forEach(div => div.addEventListener('click', logText, {
-        capture: false
-    }));
-
-    // once unbinds the event listener to prevent future clicks on it
-    button.addEventListener('click', () => {
-        console.log('Click!');
-    }, {
-        once: true
-    });
-
-</script>
+<div class="inner">
+<button class="click">Click Me!</button>
+<button class="propagate">Stop Propagation</button>
+</div>
+<script src="capture.js"></script>
 </body>
 </html>
