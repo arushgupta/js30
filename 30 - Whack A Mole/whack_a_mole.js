@@ -1,9 +1,14 @@
 const holes = document.querySelectorAll('.hole');
 const scoreBoard = document.querySelector('.score');
 const moles = document.querySelectorAll('.mole');
+const modes = document.querySelectorAll('select');
 let lastHole;
 let timeUp = false;
 let score = 0;
+let mode;
+let time;
+
+console.log(modes);
 
 function randomTime(min, max) {
     return Math.round(Math.random() * (max - min) + min);
@@ -24,7 +29,13 @@ function randomHole(holes) {
 }
 
 function peep() {
-    const time = randomTime(200, 1000);
+    if(mode === 'gentle') {
+        time = randomTime(350, 1000);
+    } else if (mode === 'fun') {
+        time = randomTime(200, 900);
+    } else {
+        time = randomTime(50, 500);
+    }
     const hole = randomHole(holes);
     hole.classList.add('up');
     // remove class after randomized time has expired
@@ -39,7 +50,7 @@ function startGame() {
     scoreBoard.textContent = 0;
     timeUp = false;
     peep();
-    setTimeout(() => timeUp = true, 10000);
+    setTimeout(() => timeUp = true, 30000);
 }
 
 function bonk(e) {
@@ -49,4 +60,17 @@ function bonk(e) {
     scoreBoard.textContent = score;
 }
 
+function setMode() {
+    mode = this.value
+}
+
 moles.forEach(mole => mole.addEventListener('click', bonk));
+modes.forEach(mode => mode.addEventListener('change', setMode));
+
+window.addEventListener('keyup', (e) => {
+    if(mode === undefined && e.key === ' ') {
+        alert('Please select a mode');
+    } else {
+        if(e.key === ' ') startGame();
+    }
+});
