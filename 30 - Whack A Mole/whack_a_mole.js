@@ -2,13 +2,15 @@ const holes = document.querySelectorAll('.hole');
 const scoreBoard = document.querySelector('.score');
 const moles = document.querySelectorAll('.mole');
 const modes = document.querySelectorAll('select');
+const timerDisplay = document.querySelector('.timer-display');
 let lastHole;
 let timeUp = false;
 let score = 0;
 let mode;
 let time;
-
-console.log(modes);
+let seconds = 30;
+let countdown;
+let secondsLeft;
 
 function randomTime(min, max) {
     return Math.round(Math.random() * (max - min) + min);
@@ -49,8 +51,28 @@ function startGame() {
     score = 0;
     scoreBoard.textContent = 0;
     timeUp = false;
+    timer(seconds);
     peep();
     setTimeout(() => timeUp = true, 30000);
+}
+
+function timer(seconds) {
+    clearInterval(countdown);
+    const now = Date.now();
+    const then = now + seconds * 1000;
+    displayTimeLeft(seconds);
+    countdown  = setInterval(() => {
+        secondsLeft = Math.round((then - Date.now()) / 1000);
+        if(secondsLeft < 0) {
+            clearInterval(countdown);
+            return;
+        }
+        displayTimeLeft(secondsLeft);
+    }, 1000);
+}
+
+function displayTimeLeft(time) {
+    timerDisplay.textContent = `00:${time < 10 ? '0' : ''}${time}`;
 }
 
 function bonk(e) {
