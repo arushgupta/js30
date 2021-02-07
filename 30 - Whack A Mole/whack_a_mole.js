@@ -3,6 +3,7 @@ const scoreBoard = document.querySelector('.score');
 const moles = document.querySelectorAll('.mole');
 const modes = document.querySelectorAll('select');
 const timerDisplay = document.querySelector('.timer-display');
+const highScore = JSON.parse(localStorage.getItem('score')) || 0;
 let lastHole;
 let timeUp = false;
 let score = 0;
@@ -53,7 +54,10 @@ function startGame() {
     timeUp = false;
     timer(seconds);
     peep();
-    setTimeout(() => timeUp = true, 30000);
+    setTimeout(() => {
+        timeUp = true;
+        if(score > highScore) localStorage.setItem('score', score);
+    }, 30000);
 }
 
 function timer(seconds) {
